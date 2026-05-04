@@ -1,0 +1,14 @@
+{
+  "restaurants": [
+    {
+      "name": "천하일면",
+      "address": "맛집주소",
+      "phone": "전화번호"
+    },
+    {
+      "name": "1",
+      "address": "2",
+      "phone": "3"
+    }
+  ]
+}
