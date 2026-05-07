@@ -9,6 +9,16 @@
       "name": "1",
       "address": "2",
       "phone": "3"
+    },
+    {
+      "name": "천면",
+      "address": "맛집주소",
+      "phone": "전화번호"
+    },
+    {
+      "name": "천w면",
+      "address": "맛집주소",
+      "phone": "전화번호"
     }
   ]
 }

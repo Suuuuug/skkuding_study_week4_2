@@ -1,20 +1,15 @@
 // restaurant.service.ts
 import { Injectable, OnModuleInit, NotFoundException, ConflictException, InternalServerErrorException } from '@nestjs/common';
 import { readFile, writeFile } from 'fs/promises';
+import { CreateRestaurantDto } from './restaurant.dto';
 import * as path from 'path';
 
-export interface Restaurant {
-    name: string;
-    address: string;
-    phone: string;
-}
-
 export interface JsonData {
-    restaurants: Restaurant[];
+    restaurants: CreateRestaurantDto[];
 }
 
 @Injectable()
-export class RestaurantService implements OnModuleInit {
+export class RestaurantService implements OnModuleInit { //onmoduleinit 반드시 사용하겠다는 뜻
     private jsonData: JsonData = { restaurants: [] };
     private readonly filePath = path.join(process.cwd(), 'data', 'restaurant.json');
 
@@ -48,7 +43,7 @@ export class RestaurantService implements OnModuleInit {
         return rest;
     }
 
-    async addRestaurant(newRest: Restaurant) {
+    async createRestaurant(newRest: CreateRestaurantDto) {
         const data = await this.getData();
         const exists = data.restaurants.find(r => r.name === newRest.name);
 
@@ -75,7 +70,7 @@ export class RestaurantService implements OnModuleInit {
         return deletedRest;
     }
 
-    async updateRestaurant(patchRest: Restaurant) {
+    async updateRestaurant(patchRest: CreateRestaurantDto) {
         const data = await this.getData();
         const index = data.restaurants.findIndex(r => r.name === patchRest.name);
 

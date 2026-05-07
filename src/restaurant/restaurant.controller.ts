@@ -1,5 +1,5 @@
 import { 
-    Controller, Get, Post, Delete, Patch, Param, Body, HttpStatus, UseFilters, HttpCode 
+    Controller, Get, Post, Delete, Patch, Param, Body, UseFilters, ValidationPipe
 } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
 import { CreateRestaurantDto } from './restaurant.dto';
@@ -21,8 +21,10 @@ export class RestaurantController {
     }
 
     @Post()
-    async createRestaurant(@Body() newRest: CreateRestaurantDto) {
-        return await this.restaurantService.addRestaurant(newRest);
+    async createRestaurant(
+        @Body(ValidationPipe) createRestaurantDto: CreateRestaurantDto
+    ) {
+        return await this.restaurantService.createRestaurant(createRestaurantDto);
     }
 
     @Delete(':name')
@@ -31,7 +33,9 @@ export class RestaurantController {
     }
 
     @Patch()
-    async updateRestaurant(@Body() patchRest: CreateRestaurantDto) {
-        return await this.restaurantService.updateRestaurant(patchRest);
+    async updateRestaurant(
+        @Body(ValidationPipe) createRestaurantDto: CreateRestaurantDto
+    ) {
+        return await this.restaurantService.updateRestaurant(createRestaurantDto);
     }
 }

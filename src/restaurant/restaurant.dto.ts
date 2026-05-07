@@ -1,5 +1,11 @@
+import { IsString} from 'class-validator';
 export class CreateRestaurantDto {
-    name: string = "";
-    address: string = "";
-    phone: string = "";
+    @IsString()
+    name: string;
+
+    @IsString()
+    address: string;
+
+    @IsString()
+    phone: string;
 }
